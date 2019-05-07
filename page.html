@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Shield Test</title>
+    </head>
+    <body>
+        <canvas id="cvs"></canvas>
+        <div id="buttons">
+            <input type="button" id="atkButton" onclick="AttackButton()" value="Attack">
+            <input type="button" id="healButton" onclick="HealButton()" value="Heal">
+            <input type="button" id="rcvButton" onclick="RecoverButton()" value="Recover">
+        </div>
+        <script src="canvas.js"></script>
+        <script src="bar.js"></script>
+        <script src="player.js"></script>
+        <script src="enemy.js"></script>
+        <script type="text/javascript">
+            var player = new Player();
+            var enemy = new Enemy();
+            var delay = 10, refresh = setInterval(draw, delay);
+            var healTask, recoverTask;
+
+            function draw() {
+                player.HPBar.Show(player.HP, player.HP_MAX);
+                player.SPBar.Show(player.SP, player.SP_MAX);
+            }
+
+            function AttackButton() {
+                enemy.Attack(player);
+            }
+
+            function HealButton() {
+                if (player.HP < player.HP_MAX) {
+                    document.getElementById("healButton").disabled = true;
+                    healTask = setInterval(Heal, delay, player);
+                }
+            }
+
+            function RecoverButton() {
+                if (player.SP < player.SP_MAX) {
+                    document.getElementById("rcvButton").disabled = true;
+                    increment = SPRecovered(player);
+                    recoverTask = setInterval(Recover, delay, player);
+                }
+            }
+        </script>
+    </body>
+</html>
