@@ -19,6 +19,7 @@ function Attack(attacker, target) {
     stop -= damage;
 
     if (target.SP <= 0) {
+        clearInterval(healTask);
         target.HP = Math.max(target.HP + target.SP, 0);
         target.SP = 0;
         document.getElementById("healButton").disabled = false;
@@ -29,6 +30,5 @@ function Attack(attacker, target) {
         document.getElementById("atkButton").disabled = false;
         clearInterval(attackTask);
     }
-    clearInterval(healTask);
     clearInterval(recoverTask);
 }

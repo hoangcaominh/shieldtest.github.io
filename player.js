@@ -20,9 +20,13 @@ function Heal(target) {
     }
 }
 
+var allowLevelUp = true;
+
 function SPRecovered(target) {
     // SP_MAX increment formula
-    target.SP_MAX += (target.SP_MAX - target.SP) * 15 / 100;
+    if (allowLevelUp) {
+        target.SP_MAX += (target.SP_MAX - target.SP) * 15 / 100;
+    }
     // SP increment formula
     // Quick-recover formula (squared cubic root)
     return Math.cbrt(target.SP_MAX) ** 2 / (1000 / delay);
@@ -35,8 +39,10 @@ function SPRecovered(target) {
 }
 
 function Recover(target) {
+    allowLevelUp = false;
     target.SP = Math.min(target.SP + increment, target.SP_MAX);
     if (target.SP == target.SP_MAX) {
+        allowLevelUp = true;
         document.getElementById("rcvButton").disabled = false;
         clearInterval(recoverTask);
     }
