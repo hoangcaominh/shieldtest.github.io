@@ -1,5 +1,6 @@
 class Player {
     constructor() {
+        this.Name = "Noname";
         this.HP = 30;
         this.HP_MAX = 30;
         this.SP = 30;
@@ -11,12 +12,12 @@ class Player {
 }
 
 function Heal(target) {
+    // console.log("HP: " + target.HP);
     target.HP = Math.min(target.HP + 2 / (1000 / delay), target.HP_MAX);
     if (target.HP == target.HP_MAX) {
         document.getElementById("healButton").disabled = false;
         clearInterval(healTask);
     }
-    // console.log("HP: " + target.HP);
 }
 
 function SPRecovered(target) {

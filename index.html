@@ -19,7 +19,7 @@
             var player = new Player();
             var enemy = new Enemy();
             var delay = 10, refresh = setInterval(draw, delay);
-            var healTask, recoverTask;
+            var attackTask, healTask, recoverTask;
 
             function draw() {
                 player.HPBar.Show(player.HP, player.HP_MAX);
@@ -27,7 +27,10 @@
             }
 
             function AttackButton() {
-                enemy.Attack(player);
+                multiplier = 2, stop = enemy.ATK;
+                document.getElementById("atkButton").disabled = true;
+                attackTask = setInterval(Attack, delay, enemy, player);
+                enemy.ATK += enemy.ATK * 5 / 100;
             }
 
             function HealButton() {
