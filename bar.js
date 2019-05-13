@@ -7,15 +7,17 @@ class Bar {
         this.height = height;
         this.color = color;
         
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = "#FFFFFF";
         ctx.fillText(this.text, this.x, this.y, screen.width);
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x + fontSize * 1.8, this.y - this.height, this.width, this.height);
     }
 
+    /*
     lerp(a, b, percentage) {
         return (b - a) * percentage + a;
     }
+    */
 
     Show(numerator, denominator) {
         var fraction = numerator / denominator;
@@ -33,7 +35,7 @@ class Bar {
         */
         ctx.clearRect(this.x + fontSize * 1.8, this.y - this.height, screen.width, this.height);
         ctx.fillRect(this.x + fontSize * 1.8, this.y - this.height, this.width * fraction, this.height);
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = "#FFFFFF";
         ctx.fillText(Math.ceil(numerator) + "/" + Math.ceil(denominator), this.x + fontSize * 2.4 + this.width, this.y, screen.width);
     }
 }

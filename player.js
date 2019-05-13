@@ -6,8 +6,10 @@ class Player {
         this.SP = 30;
         this.SP_MAX = 30;
         this.ATK = 1;
-        this.HPBar = new Bar("HP", 0, 20, 400, 20, "#FF0000");
-        this.SPBar = new Bar("SP", 0, 20 + fontSize, 400, 20, "#15BCF4");
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(this.Name, padding.x, padding.y, screen.width);
+        this.HPBar = new Bar("HP", padding.x, padding.y + fontSize, 400, 20, "#FF0000");
+        this.SPBar = new Bar("SP", padding.x, padding.y + fontSize * 2, 400, 20, "#15BCF4");
     }
 }
 
@@ -25,7 +27,7 @@ var allowLevelUp = true;
 function SPRecovered(target) {
     // SP_MAX increment formula
     if (allowLevelUp) {
-        target.SP_MAX += (target.SP_MAX - target.SP) * 15 / 100;
+        target.SP_MAX += Math.round((target.SP_MAX - target.SP) * 15 / 100);
     }
     // SP increment formula
     // Quick-recover formula (squared cubic root)

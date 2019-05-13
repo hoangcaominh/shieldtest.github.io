@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Shield Test</title>
+        <link rel="stylesheet" href="index.css">
     </head>
     <body>
         <canvas id="cvs"></canvas>
@@ -15,38 +16,7 @@
         <script src="bar.js"></script>
         <script src="player.js"></script>
         <script src="enemy.js"></script>
-        <script type="text/javascript">
-            var player = new Player();
-            var enemy = new Enemy();
-            var delay = 10, refresh = setInterval(draw, delay);
-            var attackTask, healTask, recoverTask;
-
-            function draw() {
-                player.HPBar.Show(player.HP, player.HP_MAX);
-                player.SPBar.Show(player.SP, player.SP_MAX);
-            }
-
-            function AttackButton() {
-                multiplier = 2, stop = enemy.ATK;
-                document.getElementById("atkButton").disabled = true;
-                attackTask = setInterval(Attack, delay, enemy, player);
-                enemy.ATK += enemy.ATK * 5 / 100;
-            }
-
-            function HealButton() {
-                if (player.HP < player.HP_MAX) {
-                    document.getElementById("healButton").disabled = true;
-                    healTask = setInterval(Heal, delay, player);
-                }
-            }
-
-            function RecoverButton() {
-                if (player.SP < player.SP_MAX) {
-                    document.getElementById("rcvButton").disabled = true;
-                    increment = SPRecovered(player);
-                    recoverTask = setInterval(Recover, delay, player);
-                }
-            }
+        <script src="script.js"></script>
         </script>
     </body>
 </html>
